@@ -122,16 +122,27 @@ public class HttpServer {
                         end = fileLength - 1;
                     }
 
-                    if (start <= end) {
-                        long contentLength = end - start + 1;
-                        cleanupAudioStream();
-                        audioInputStream = new FileInputStream(file);
-                        audioInputStream.skip(start);
-                        Response response = newFixedLengthResponse(Response.Status.PARTIAL_CONTENT, getMimeType(audioFileToServe), audioInputStream, contentLength);
-                        response.addHeader("Content-Length", contentLength + "");
-                        response.addHeader("Content-Range", "bytes " + start + "-" + end + "/" + fileLength);
-                        response.addHeader("Content-Type", getMimeType(audioFileToServe));
-                        return response;
+                   if (start <= end) {
+
+    long contentLength = end - start + 1;
+
+    cleanupAudioStream();
+
+    audioInputStream = new FileInputStream(file);
+
+    long skipped = audioInputStream.skip(start);
+    if (skipped < start) {
+        throw new IOException("Unable to skip to the desired byte position in the file.");
+    }
+
+    Response response = newFixedLengthResponse(Response.Status.PARTIAL_CONTENT, getMimeType(audioFileToServe), audioInputStream, contentLength);
+
+    response.addHeader("Content-Length", contentLength + "");
+    response.addHeader("Content-Range", "bytes " + start + "-" + end + "/" + fileLength);
+    response.addHeader("Content-Type", getMimeType(audioFileToServe));
+
+    return response;
+
                     } else {
                         return newFixedLengthResponse(Response.Status.RANGE_NOT_SATISFIABLE, "text/html", range);
                     }

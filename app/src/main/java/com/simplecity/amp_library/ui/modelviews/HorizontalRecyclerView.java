@@ -19,7 +19,7 @@ public class HorizontalRecyclerView extends BaseViewModel<HorizontalRecyclerView
 
     public ViewModelAdapter viewModelAdapter;
 
-    public HorizontalRecyclerView(String tag) {
+    public HorizontalRecyclerView(String) {
         this.viewModelAdapter = new ViewModelAdapter();
     }
 
