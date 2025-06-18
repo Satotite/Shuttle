@@ -381,16 +381,5 @@ public class ShuttleApplication extends DaggerApplication {
                 .flatMapCompletable(songs -> Completable.complete());
     }
 
-    private void enableStrictMode() {
-        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
-                .detectAll()
-                .penaltyLog()
-                .build());
-
-        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
-                .detectAll()
-                .penaltyLog()
-                .penaltyFlashScreen()
-                .build());
-    }
+    
 }

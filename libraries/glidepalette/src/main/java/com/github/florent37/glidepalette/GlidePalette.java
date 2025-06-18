@@ -21,7 +21,7 @@ public class GlidePalette<ModelType, TranscodeType> extends BitmapPalette implem
         glidePalette.url = url;
         return glidePalette;
     }
-
+    @Override
     public GlidePalette use(@Profile int paletteProfile) {
         super.use(paletteProfile);
         return this;

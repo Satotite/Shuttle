@@ -8,6 +8,18 @@ import com.simplecity.amp_library.utils.StringUtils;
 public class FileObject extends BaseFileObject {
 
     public String extension;
+        @Override
+    public boolean equals(Object obj) {
+        if (this == obj) return true;
+        if (!(obj instanceof FileObject)) return false;
+        FileObject other = (FileObject) obj;
+        return extension != null ? extension.equals(other.extension) : other.extension == null;
+    }
+
+    @Override
+    public int hashCode() {
+        return extension != null ? extension.hashCode() : 0;
+    }
 
     public TagInfo tagInfo;
 
