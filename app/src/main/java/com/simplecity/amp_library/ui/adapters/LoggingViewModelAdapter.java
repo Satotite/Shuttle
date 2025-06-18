@@ -11,26 +11,24 @@ import java.util.List;
 
 public class LoggingViewModelAdapter extends ViewModelAdapter {
 
-    private static final String TAG = "LoggingVMAdapter";
-
-    String tag;
+    private String logTag;
 
     public LoggingViewModelAdapter(String tag) {
-        this.tag = tag;
+        this.logTag = tag;
     }
 
     @Nullable
     @Override
     public synchronized Disposable setItems(List<ViewModel> items, @Nullable CompletionListUpdateCallback callback) {
 
-        Crashlytics.log(Log.DEBUG, TAG, String.format("setItems called for: '%s'", tag));
+        Crashlytics.log(Log.DEBUG, logTag, String.format("setItems called for: '%s'", logTag));
 
         return super.setItems(items, new CompletionListUpdateCallback() {
 
             @Override
             public void onComplete() {
 
-                Crashlytics.log(Log.DEBUG, TAG, String.format("setItems complete for: '%s'. Dispatching updates.", tag));
+                Crashlytics.log(Log.DEBUG, logTag, String.format("setItems complete for: '%s'. Dispatching updates.", logTag));
 
                 if (callback != null) {
                     callback.onComplete();
