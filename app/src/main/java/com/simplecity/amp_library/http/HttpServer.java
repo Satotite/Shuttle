@@ -182,34 +182,36 @@ public class HttpServer {
         }
     }
 
-    private final Map<String, String> MIME_TYPES = new HashMap<String, String>() {{
-        put("css", "text/css");
-        put("htm", "text/html");
-        put("html", "text/html");
-        put("xml", "text/xml");
-        put("java", "text/x-java-source, text/java");
-        put("md", "text/plain");
-        put("txt", "text/plain");
-        put("asc", "text/plain");
-        put("gif", "image/gif");
-        put("jpg", "image/jpeg");
-        put("jpeg", "image/jpeg");
-        put("png", "image/png");
-        put("mp3", "audio/mpeg");
-        put("m3u", "audio/mpeg-url");
-        put("mp4", "video/mp4");
-        put("ogv", "video/ogg");
-        put("flv", "video/x-flv");
-        put("mov", "video/quicktime");
-        put("swf", "application/x-shockwave-flash");
-        put("js", "application/javascript");
-        put("pdf", "application/pdf");
-        put("doc", "application/msword");
-        put("ogg", "application/x-ogg");
-        put("zip", "application/octet-stream");
-        put("exe", "application/octet-stream");
-        put("class", "application/octet-stream");
-    }};
+    private final Map<String, String> MIME_TYPES = createMimeTypes();
+    private Map<String, String> createMimeTypes() {
+        Map<String, String> map = new HashMap<>();
+        map.put("css", "text/css");
+        map.put("htm", "text/html");
+        map.put("html", "text/html");
+        map.put("xml", "text/xml");
+        map.put("java", "text/x-java-source, text/java");
+        map.put("md", "text/plain");
+        map.put("txt", "text/plain");
+        map.put("asc", "text/plain");
+        map.put("gif", "image/gif");
+        map.put("jpg", "image/jpeg");
+        map.put("jpeg", "image/jpeg");
+        map.put("png", "image/png");
+        map.put("mp3", "audio/mpeg");
+        map.put("m3u", "audio/mpeg-url");
+        map.put("mp4", "video/mp4");
+        map.put("ogv", "video/ogg");
+        map.put("flv", "video/x-flv");
+        map.put("mov", "video/quicktime");
+        map.put("swf", "application/x-shockwave-flash");
+        map.put("js", "application/javascript");
+        map.put("pdf", "application/pdf");
+        map.put("doc", "application/msword");
+        map.put("ogg", "application/x-ogg");
+        map.put("zip", "application/octet-stream");
+        return map;
+
+    };
 
     String getMimeType(String filePath) {
         return MIME_TYPES.get(filePath.substring(filePath.lastIndexOf(".") + 1));
