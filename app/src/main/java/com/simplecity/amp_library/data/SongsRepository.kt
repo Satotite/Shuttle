@@ -24,7 +24,7 @@ import io.reactivex.Observable
 import io.reactivex.ObservableTransformer
 import io.reactivex.disposables.Disposable
 import io.reactivex.functions.Consumer
-import io.reactivex.functions.Function3
+
 import io.reactivex.schedulers.Schedulers
 import java.util.ArrayList
 import java.util.Arrays
@@ -193,14 +193,14 @@ open class SongsRepository @Inject constructor(
                     var result = songs
 
                     // Filter out excluded paths
-                    if (!exclItems.isEmpty()) {
+                    if (isNotEmpty()) {
                         result = songs
                             .filterNot { song -> exclItems.any { exclItem -> StringUtils.containsIgnoreCase(song.path, exclItem.path) } }
                             .toList()
                     }
 
                     // Filter out non-included paths
-                    if (!inclItems.isEmpty()) {
+                    if (isNotEmpty()) {
                         result = result
                             .filter { song -> inclItems.any { inclItem -> StringUtils.containsIgnoreCase(song.path, inclItem.path) } }
                             .toList()

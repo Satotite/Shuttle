@@ -168,7 +168,7 @@ class ArtistDetailFragment :
         }
 
         override fun onStartDrag(holder: SongView.ViewHolder) {
-
+            holder.itemView
         }
     }
 
