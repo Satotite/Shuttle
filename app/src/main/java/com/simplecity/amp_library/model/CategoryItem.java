@@ -98,8 +98,10 @@ public class CategoryItem {
                 return "folders";
             case Type.PLAYLISTS:
                 return "playlists";
+            default:
+                return "unknown";
         }
-        return null;
+
     }
 
     public boolean isEnabledByDefault() {
@@ -118,8 +120,10 @@ public class CategoryItem {
                 return false;
             case Type.PLAYLISTS:
                 return false;
+            default:
+                return true;
         }
-        return true;
+
     }
 
     public String getSortKey() {
