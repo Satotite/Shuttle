@@ -2,11 +2,19 @@ package com.simplecity.amp_library.http.lastfm;
 
 import com.google.gson.annotations.SerializedName;
 
-@SuppressWarnings("WeakerAccess")
 public class LastFmImage {
 
     @SerializedName("#text")
-    public String url;
+    private String url;
 
-    public String size;
+    @SerializedName("size")
+    private String size;
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getSize() {
+        return size;
+    }
 }

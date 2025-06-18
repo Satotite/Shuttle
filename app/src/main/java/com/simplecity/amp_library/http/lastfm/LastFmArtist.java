@@ -4,28 +4,49 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-@SuppressWarnings("WeakerAccess")
-public class LastFmArtist implements LastFmResult {
+public class LastFmAlbum implements LastFmResult {
 
-    @SerializedName("artist")
-    public Artist artist;
-
-    public static class Artist {
-        public String name;
-        @SerializedName("image")
-        public List<LastFmImage> images = new ArrayList<>();
-        public Bio bio;
-    }
+    @SerializedName("album")
+    private Album album;
 
     @Override
     public String getImageUrl() {
-        if (artist == null || artist.images == null || artist.images.isEmpty()) {
-            return null;
-        }
-        return LastFmUtils.getBestImageUrl(artist.images);
+        return album != null ? LastFmUtils.getBestImageUrl(album.getImages()) : null;
     }
 
-    public static class Bio {
-        public String summary;
+    public Album getAlbum() {
+        return album;
+    }
+
+    public static class Album {
+        @SerializedName("name")
+        private String name;
+
+        @SerializedName("image")
+        private List<LastFmImage> images = new ArrayList<>();
+
+        @SerializedName("wiki")
+        private Wiki wiki;
+
+        public String getName() {
+            return name;
+        }
+
+        public List<LastFmImage> getImages() {
+            return images;
+        }
+
+        public Wiki getWiki() {
+            return wiki;
+        }
+    }
+
+    public static class Wiki {
+        @SerializedName("summary")
+        private String summary;
+
+        public String getSummary() {
+            return summary;
+        }
     }
 }
